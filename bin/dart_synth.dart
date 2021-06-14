@@ -3,6 +3,8 @@ import 'dart:typed_data';
 
 import 'package:libao/libao.dart';
 
+import 'sine_osc.dart';
+
 void main(List<String> arguments) {
   print('playing!');
 
@@ -32,8 +34,10 @@ void main(List<String> arguments) {
   const bufferSize = bits ~/ 8 * channels * rate;
   final buffer = Uint8List(bufferSize);
 
+  final osc = SineOscillator(rate, freq);
+
   for (var i = 0; i < rate; i++) {
-    final sample = (volume * 32768.0 * sin(2 * pi * freq * (i / rate))).round();
+    final sample = (osc.next() * volume * 32768.0).toInt();
     // Left = Right.
     buffer[4 * i] = buffer[4 * i + 2] = sample & 0xff;
     buffer[4 * i + 1] = buffer[4 * i + 3] = (sample >> 8) & 0xff;
