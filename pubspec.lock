@@ -12,8 +12,8 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: port-to-dart-2-13
-      resolved-ref: "3e58425e3db1eb2aec51efed2989d5c2ff184d6e"
+      ref: null-safety
+      resolved-ref: "3676ac6247698f022ec4123f90e6050ad6142829"
       url: "https://github.com/maks/libao"
     source: git
     version: "0.1.0"
