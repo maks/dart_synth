@@ -6,9 +6,9 @@ The current plan is to create enough infrastructure to run WASM code from [Peter
 
 Status:
 
-[x] Playback using Dart on Linux via Libao (using Pulseaudio on Ubuntu)
-[x] Playback sine wave test tone using AssemblyScript ported to Dart
-[] Call wasm (wasmaudioworklet AS compiled to wasm) from Dart, preferably using upcoming wasm package via FFI
-[] create standalone exe
-[] midi support using [flutter_midi_command](https://pub.dev/packages/flutter_midi_command)
+- [x] Playback using Dart on Linux via Libao (using Pulseaudio on Ubuntu)
+- [x] Playback sine wave test tone using AssemblyScript ported to Dart
+- [ ] Call wasm (wasmaudioworklet AS compiled to wasm) from Dart, preferably using upcoming wasm package via FFI
+- [ ] create standalone exe
+- [ ] midi support using [flutter_midi_command](https://pub.dev/packages/flutter_midi_command)
 
