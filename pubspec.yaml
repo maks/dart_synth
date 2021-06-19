@@ -12,6 +12,10 @@ dependencies:
     git: 
       url: https://github.com/maks/libao
       ref: null-safety
+  wasm: 
+    git:
+      url: https://github.com/dart-lang/wasm.git
+      ref: main    
 
 
 dev_dependencies:
