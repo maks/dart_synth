@@ -1,6 +1,5 @@
 import 'dart:io';
 import 'package:wasm/wasm.dart';
-import 'sine_osc.dart';
 
 /// Wrap access to a oscillator defined in WASM
 /// we expect the wasm to be a AssemblyScript class which has a
@@ -37,17 +36,4 @@ class WasmOscillator {
   }
 
   double nextSample() => _nextSample(_oscObjectRef);
-}
-
-class WasmSineOscillator implements SineOscillator {
-  late final WasmOscillator _wasmOsc;
-
-  WasmSineOscillator(int sampleRate, double frequency) {
-    _wasmOsc =
-        WasmOscillator('../../as-audio/build/osc.wasm', 'SineOscillator');
-    _wasmOsc.frequency = frequency;
-  }
-
-  @override
-  double next() => _wasmOsc.nextSample();
 }

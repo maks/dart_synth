@@ -1,9 +1,8 @@
 import 'dart:typed_data';
 
+import 'package:dart_synth/oscillators.dart';
+import 'package:dart_synth/wasm_osc/sine_osc.dart';
 import 'package:libao/libao.dart';
-
-import 'sine_osc.dart';
-import 'wasm_helper.dart';
 
 void main(List<String> arguments) {
   print('playing!');

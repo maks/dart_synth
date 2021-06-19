@@ -1,8 +1,6 @@
 import 'dart:math';
 
-abstract class SineOscillator {
-  double next();
-}
+import '../oscillators.dart';
 
 /// ref: https://github.com/petersalomonsen/javascriptmusic/blob/master/wasmaudioworklet/synth1/assembly/synth/sineoscillator.class.ts
 ///
