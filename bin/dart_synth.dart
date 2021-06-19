@@ -1,9 +1,9 @@
-import 'dart:math';
 import 'dart:typed_data';
 
 import 'package:libao/libao.dart';
 
 import 'sine_osc.dart';
+import 'wasm_helper.dart';
 
 void main(List<String> arguments) {
   print('playing!');
@@ -34,7 +34,8 @@ void main(List<String> arguments) {
   const bufferSize = bits ~/ 8 * channels * rate;
   final buffer = Uint8List(bufferSize);
 
-  final osc = SineOscillator(rate, freq);
+  // final SineOscillator osc = DartSineOscillator(rate, freq);
+  final SineOscillator osc = WasmSineOscillator(rate, freq);
 
   for (var i = 0; i < rate; i++) {
     final sample = (osc.next() * volume * 32768.0).toInt();

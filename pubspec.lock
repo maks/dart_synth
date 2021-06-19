@@ -24,5 +24,14 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.11.0"
+  wasm:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: main
+      resolved-ref: "550fce59e8bc9fdb7fb08663dd5f06c4308d8fb5"
+      url: "https://github.com/dart-lang/wasm.git"
+    source: git
+    version: "0.1.0-dev"
 sdks:
   dart: ">=2.12.0 <3.0.0"
