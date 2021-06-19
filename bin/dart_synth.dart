@@ -1,7 +1,7 @@
 import 'dart:typed_data';
 
 import 'package:dart_synth/oscillators.dart';
-import 'package:dart_synth/wasm_osc/sine_osc.dart';
+import 'package:dart_synth/wasm_osc/wasm_sine_osc.dart';
 import 'package:libao/libao.dart';
 
 void main(List<String> arguments) {
