@@ -5,7 +5,7 @@ class WasmSineOscillator implements SineOscillator {
   late final WasmOscillator _wasmOsc;
 
   WasmSineOscillator(int sampleRate, double frequency) {
-    _wasmOsc = WasmOscillator('../bin/sin_osc.wasm', 'SineOscillator');
+    _wasmOsc = WasmOscillator('../bin/osc.wasm', 'SineOscillator');
     _wasmOsc.frequency = frequency;
   }
 
