@@ -2,8 +2,9 @@ import 'dart:math';
 
 import '../oscillators.dart';
 
-/// ref: https://github.com/petersalomonsen/javascriptmusic/blob/master/wasmaudioworklet/synth1/assembly/synth/sineoscillator.class.ts
+/// Port of petersalomonsen AssemblyScript sine oscillator, for initial testing only
 ///
+/// ref: https://github.com/petersalomonsen/javascriptmusic/blob/master/wasmaudioworklet/synth1/assembly/synth/sineoscillator.class.ts
 class DartSineOscillator implements Oscillator {
   int position = 0;
   final double frequency;

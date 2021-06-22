@@ -5,7 +5,7 @@ import 'package:dart_synth/wasm_osc/wasm_saw_osc.dart';
 import 'package:libao/libao.dart';
 
 void main(List<String> arguments) {
-  print('playing!');
+  print('playing...');
 
   final ao = Libao.open();
 
@@ -33,7 +33,6 @@ void main(List<String> arguments) {
   const bufferSize = bits ~/ 8 * channels * rate;
   final buffer = Uint8List(bufferSize);
 
-  // final SineOscillator osc = DartSineOscillator(rate, freq);
   final Oscillator osc = WasmSawOscillator(rate, freq);
 
   for (var i = 0; i < rate; i++) {
