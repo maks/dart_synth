@@ -1,7 +1,7 @@
 import 'dart:typed_data';
 
 import 'package:dart_synth/oscillators.dart';
-import 'package:dart_synth/wasm_osc/wasm_sine_osc.dart';
+import 'package:dart_synth/wasm_osc/wasm_saw_osc.dart';
 import 'package:libao/libao.dart';
 
 void main(List<String> arguments) {
@@ -34,7 +34,7 @@ void main(List<String> arguments) {
   final buffer = Uint8List(bufferSize);
 
   // final SineOscillator osc = DartSineOscillator(rate, freq);
-  final SineOscillator osc = WasmSineOscillator(rate, freq);
+  final Oscillator osc = WasmSawOscillator(rate, freq);
 
   for (var i = 0; i < rate; i++) {
     final sample = (osc.next() * volume * 32768.0).toInt();

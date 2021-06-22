@@ -1,11 +1,11 @@
 import '../oscillators.dart';
 import 'wasm_helper.dart';
 
-class WasmSineOscillator implements Oscillator {
+class WasmSawOscillator implements Oscillator {
   late final WasmOscillator _wasmOsc;
 
-  WasmSineOscillator(int sampleRate, double frequency) {
-    _wasmOsc = WasmOscillator('../bin/osc.wasm', 'SineOscillator');
+  WasmSawOscillator(int sampleRate, double frequency) {
+    _wasmOsc = WasmOscillator('../bin/osc.wasm', 'SawOscillator');
     _wasmOsc.frequency = frequency;
   }
 

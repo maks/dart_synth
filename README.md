@@ -15,7 +15,7 @@ The current plan is to create enough infrastructure to run WASM code from [Peter
 
 ## Example
 
-run to get sine tone at 440hz playing for 1 sec:
+run to get sawtooth tone at 440hz playing for 1 sec:
 ```
 dart bin/dart_synth.dart
 ```

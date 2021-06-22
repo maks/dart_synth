@@ -1,3 +1,3 @@
-abstract class SineOscillator {
+abstract class Oscillator {
   double next();
 }
