@@ -5,7 +5,7 @@ class WasmTriangleOscillator implements Oscillator {
   late final WasmOscillator _wasmOsc;
 
   WasmTriangleOscillator(int sampleRate, double frequency) {
-    _wasmOsc = WasmOscillator('../bin/osc.wasm', 'TriangleOscillator');
+    _wasmOsc = WasmOscillator('osc.wasm', 'TriangleOscillator');
     _wasmOsc.frequency = frequency;
   }
 
