@@ -19,8 +19,10 @@ The current plan is to create enough infrastructure to run WASM code from [Peter
 
 run to get sawtooth tone at 440hz playing for 1 sec:
 ```
-dart bin/dart_synth.dart
+dart example/dart_synth.dart
 ```
+
+Note: the wasm oscillator classes currently expect a wasm file called `osc.wasm` to be located in the same folder as the dart script being run, ie. `dart_synth.dart`.
 
 ## AS Audio WASM
 
