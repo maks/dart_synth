@@ -22,6 +22,10 @@ run to get sawtooth tone at 440hz playing for 1 sec:
 dart bin/dart_synth.dart
 ```
 
+## AS Audio WASM
+
+The wasm file [osc.wasm](bin/osc.wab) used by dart-synth comes from the [AssemblyScript Audio project](https://github.com/maks/as-audio).
+
 ## Status
 
 Currently only basic sine/sawooth tone playback on x86 Linux (under PulseAudio) works, see above Todo list for planned future features.

@@ -1,17 +1,14 @@
 name: dart_synth
 description: A sandbox for audio synth experimentation in Dart.
 version: 0.0.2
-# homepage: https://www.example.com
+repository: https://github.com/maks/dart_synth
 publish_to: none
 
 environment:
   sdk: '>=2.12.0 <3.0.0'
 
 dependencies:
-  libao:
-    git: 
-      url: https://github.com/maks/libao
-      ref: null-safety
+  libao: ^0.2.0
   wasm: 
     git:
       url: https://github.com/dart-lang/wasm.git
