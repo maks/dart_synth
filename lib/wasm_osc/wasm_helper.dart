@@ -13,7 +13,7 @@ class WasmOscillator {
   set frequency(double freq) => _setFrequency(_oscObjectRef, freq);
 
   WasmOscillator(final String wasmfilepath, String oscClassname) {
-    print('Loading wasm module:');
+    print('Loading wasm module [$wasmfilepath] ...');
     var wasmfile = Platform.script.resolve(wasmfilepath);
     var moduleData = File(wasmfile.path).readAsBytesSync();
     var module = WasmModule(moduleData);
@@ -36,4 +36,28 @@ class WasmOscillator {
   }
 
   double nextSample() => _nextSample(_oscObjectRef);
+}
+
+class WasmHelper {
+  late final WasmModule _wasmModule;
+
+  WasmHelper(final String wasmfilepath, {bool debug = false}) {
+    print('Loading wasm module [$wasmfilepath] ...');
+    var wasmfile = Platform.script.resolve(wasmfilepath);
+    var moduleData = File(wasmfile.path).readAsBytesSync();
+    _wasmModule = WasmModule(moduleData);
+    if (debug) {
+      print('Loaded WASM: ${_wasmModule.describe()}');
+    }
+  }
+
+  dynamic getFunction(String functionName) {
+    return _instance.lookupFunction('$functionName');
+  }
+
+  dynamic getMethod(String className, String methodName) {
+    return _instance.lookupFunction('$className#$methodName');
+  }
+
+  WasmInstance get _instance => _wasmModule.builder().build();
 }

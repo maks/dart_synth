@@ -1,10 +1,19 @@
 import 'dart:typed_data';
 
 import 'package:dart_synth/oscillators.dart';
+import 'package:dart_synth/wasm_osc/wasm_midi.dart';
 import 'package:libao/libao.dart';
 
-void main(List<String> arguments) {
-  print('playing...');
+void main(List<String> args) {
+  int? midinote;
+  var freq = 440.0;
+
+  if (args.length == 1) {
+    midinote = int.parse(args[0]);
+    freq = WasmMidi().midi2freq(midinote);
+    print('freq: $freq');
+  }
+  print('playing...$midinote');
 
   final ao = Libao.open();
 
@@ -26,7 +35,6 @@ void main(List<String> arguments) {
   );
 
   const volume = 0.5;
-  const freq = 440.0;
 
   // Number of bytes * Channels * Sample rate.
   const bufferSize = bits ~/ 8 * channels * rate;

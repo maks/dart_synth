@@ -22,6 +22,11 @@ run to get sawtooth tone at 440hz playing for 1 sec:
 dart example/dart_synth.dart
 ```
 
+to play a sawtooth tone with a given midi note for 1 sec:
+```
+dart example/dart_synth.dart 77
+```
+
 Note: the wasm oscillator classes currently expect a wasm file called `osc.wasm` to be located in the same folder as the dart script being run, ie. `dart_synth.dart`.
 
 ## AS Audio WASM
