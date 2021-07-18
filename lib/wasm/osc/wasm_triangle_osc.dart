@@ -1,5 +1,5 @@
-import '../oscillators.dart';
-import 'wasm_helper.dart';
+import '../../oscillators.dart';
+import 'wasm_oscillator.dart';
 
 class WasmTriangleOscillator implements Oscillator {
   late final WasmOscillator _wasmOsc;

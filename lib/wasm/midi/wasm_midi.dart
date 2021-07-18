@@ -1,10 +1,10 @@
-import 'wasm_helper.dart';
+import '../wasm_helper.dart';
 
 class WasmMidi {
   late final WasmHelper _helper;
 
   WasmMidi() {
-    _helper = WasmHelper('osc.wasm', debug: true);
+    _helper = WasmHelper('osc.wasm');
   }
 
   double midi2freq(int midinote) {
