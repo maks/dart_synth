@@ -1,8 +1,6 @@
 import 'dart:typed_data';
 
-import 'package:dart_synth/oscillators.dart';
-import 'package:dart_synth/wasm/midi/wasm_midi.dart';
-import 'package:dart_synth/wasm/osc/wasm_saw_osc.dart';
+import 'package:dart_synth/dart_synth.dart';
 import 'package:libao/libao.dart';
 
 void main(List<String> args) {

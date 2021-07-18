@@ -1,4 +1,4 @@
-import '../../oscillators.dart';
+import '../../interfaces.dart';
 import 'wasm_oscillator.dart';
 
 class WasmSineOscillator implements Oscillator {

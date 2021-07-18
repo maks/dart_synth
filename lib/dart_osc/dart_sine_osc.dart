@@ -1,6 +1,6 @@
 import 'dart:math';
 
-import '../oscillators.dart';
+import '../interfaces.dart';
 
 /// Port of petersalomonsen AssemblyScript sine oscillator, for initial testing only
 ///
