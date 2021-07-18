@@ -13,16 +13,17 @@ class WasmOscillator {
   set frequency(double freq) => _setFrequency(_oscObjectRef, freq);
 
   WasmOscillator(final String wasmfilepath, String oscClassname) {
-    // can't set samplerate yet as @petersalomonsen AS code uses wasm globals for that
-    // and Dart WASM pkg doesn't yet support globals: https://github.com/dart-lang/wasm/issues/24
-    // ignore: unused_local_variable
-    const sample_rate = 44100;
+    const sampleRate = 44100.0;
 
     final helper = WasmHelper(wasmfilepath);
 
     final cons = helper.getMethod(oscClassname, 'constructor');
     _setFrequency = helper.getMethod(oscClassname, 'set:frequency');
     _nextSample = helper.getMethod(oscClassname, 'next');
+
+    final sampleRateGlobal = helper.getGlobal('SAMPLERATE');
+
+    sampleRateGlobal?.value = sampleRate;
 
     // calling a Assemblyscript constructor returns a i32 which is "reference" to the object created by it
     _oscObjectRef = cons(0);
@@ -35,7 +36,7 @@ class WasmHelper {
   late final WasmModule _wasmModule;
   late final WasmInstance _instance = _wasmModule.builder().build();
 
-  WasmHelper(final String wasmfilepath, {bool debug = false}) {
+  WasmHelper(final String wasmfilepath, {bool debug = true}) {
     print('Loading wasm module [$wasmfilepath] ...');
     var wasmfile = Platform.script.resolve(wasmfilepath);
     var moduleData = File(wasmfile.path).readAsBytesSync();
@@ -51,5 +52,9 @@ class WasmHelper {
 
   dynamic getMethod(String className, String methodName) {
     return _instance.lookupFunction('$className#$methodName');
+  }
+
+  WasmGlobal? getGlobal(String name) {
+    return _instance.lookupGlobal(name);
   }
 }
