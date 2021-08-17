@@ -44,10 +44,12 @@ void main(List<String> args) async {
 
   final toIsolateSendPort = await completer.future;
 
-  const bufferedSamples = 128;
+  const bufferedSamples = 64 * 4;
   const bufferSize =
       AudioPlayer.bits ~/ 8 * AudioPlayer.channels * bufferedSamples;
   final buffer = Uint8List(bufferSize);
+
+  print('sample buffer size: $bufferedSamples');
 
   Oscillator osc = WasmSineOscillator(AudioPlayer.rate, freq);
 
@@ -55,7 +57,7 @@ void main(List<String> args) async {
   freeverb.wet = 1.0;
   freeverb.width = 0.5;
   freeverb.roomSize = 0.7;
-  freeverb.dampening = 0.5;
+  freeverb.dampening = 0.1;
   print('Reverb settings\n'
       'wet:${freeverb.wet} room:${freeverb.roomSize} width:${freeverb.width}'
       ' damp:${freeverb.dampening} frozen: ${freeverb.frozen}');
@@ -64,9 +66,9 @@ void main(List<String> args) async {
   final mainline = WasmStereoSignal(freeverb.helper);
 
   const buffersPerSec = AudioPlayer.rate / bufferedSamples;
-  var playbackDurationInSec = 5 * buffersPerSec;
+  var playbackDurationInSec = 3 * buffersPerSec;
 
-  var oscVolume = 1.0;
+  var oscVolume = 0.7;
   // fill buffer with audio
   while (playbackDurationInSec-- > 0) {
     for (var i = 0; i < bufferedSamples; i++) {
@@ -83,11 +85,15 @@ void main(List<String> args) async {
       final sampleRight =
           ((mainline.right + reverbline.right) * volume * 32768.0).toInt();
 
-      buffer[4 * i] = buffer[4 * i + 2] = sampleLeft & 0xff;
-      buffer[4 * i + 1] = buffer[4 * i + 3] = (sampleRight >> 8) & 0xff;
+      buffer[4 * i] = sampleLeft & 0xff;
+      buffer[4 * i + 2] = sampleRight & 0xff;
+      buffer[4 * i + 1] = (sampleLeft >> 8) & 0xff;
+      buffer[4 * i + 3] = (sampleRight >> 8) & 0xff;
+
     }
-    toIsolateSendPort.send(buffer);
-    oscVolume = oscVolume <= 0 ? 0 : (oscVolume - 0.007);
+    toIsolateSendPort.send(TransferableTypedData.fromList([buffer]));
+    // toIsolateSendPort.send(buffer);
+    oscVolume = oscVolume <= 0 ? 0 : (oscVolume - 0.001);
   }
 
   toIsolateSendPort.send('stop');

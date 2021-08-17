@@ -9,7 +9,9 @@ void playbackWorker(SendPort replyPort) {
   final player = AudioPlayer();
   player.play();
   requestsPort.listen((message) {
-    if (message is Uint8List) {
+    if (message is TransferableTypedData) {
+      player.buffer.add(message.materialize().asUint8List());
+    } else if (message is Uint8List) {
       player.buffer.add(message);
     } else if (message is String) {
       switch (message) {
