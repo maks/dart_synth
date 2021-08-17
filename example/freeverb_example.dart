@@ -44,7 +44,7 @@ void main(List<String> args) async {
 
   final toIsolateSendPort = await completer.future;
 
-  const bufferedSamples = 64 * 4;
+  const bufferedSamples = 1024 * 8;
   const bufferSize =
       AudioPlayer.bits ~/ 8 * AudioPlayer.channels * bufferedSamples;
   final buffer = Uint8List(bufferSize);
